@@ -50,3 +50,8 @@ If a pull request is then opened from that branch into `main`, the `pull_request
 `if: github.event_name == 'push' && github.ref == 'refs/heads/main'`
 
 This means the live site only updates after changes are actually merged (pushed) into `main`. This matched what happened in this project: the pull request checks showed "Deploy to GitHub Pages / deploy (pull_request): Skipped."
+
+## Additional Notes
+
+- The **Check links** step uses `continue-on-error: true`, which means a failed link check will show a warning but will **not** stop the workflow or block deployment. Only the HTML validation failing would prevent the site from deploying.
+- The link checker (`github-action-markdown-link-check`) is designed for Markdown files, so it checks links in files like `README.md` rather than the links inside `index.html`.
